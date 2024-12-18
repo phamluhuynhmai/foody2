@@ -30,7 +30,6 @@ const MenuItemScreen = ({ navigation }) => {
       fetchAPI()
       console.log(cart)
       return () => {
-        console.log('Screen was unfocused');
         // Useful for cleanup functions
        
       };

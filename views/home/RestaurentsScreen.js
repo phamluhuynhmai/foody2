@@ -105,6 +105,8 @@ const RestaurentsScreen = ({ navigation }) => {
               icon="shopping"
               color={MD2Colors.blue500}
               size={30}
+              onPress={() => navigation.navigate('CartScreen', { restaurant:route.params.restaurant, user:route.params.user})}
+
             />
           </View>
 

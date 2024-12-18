@@ -13,6 +13,7 @@ import {
   OrderDetailScreen,
   CartScreen,
   CheckoutScreen,
+  RestaurentsScreen
 } from './views'
 import { DrawerNavigation } from './components'
 import store from "./redux/store";
@@ -35,6 +36,7 @@ export default function App() {
             <Stack.Screen name="OrderDetailScreen" component={OrderDetailScreen} />
             <Stack.Screen name="CartScreen" component={CartScreen} />
             <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
+            <Stack.Screen name="RestaurantScreen" component={RestaurentsScreen}/>
           </Stack.Navigator>
         </NavigationContainer>
       </ToastProvider>

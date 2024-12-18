@@ -7,16 +7,16 @@ import { Header } from '../../components';
 const AboutScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Header title="About" />
+      <Header title="Về cái này" />
       <View style={styles.footer} >
         <Image 
           source={require('./../../assets/logo.png')}
           style={styles.logo}
         />
         <Text style={styles.title}>
-        Created By : Anouar Dhahri
+        Sản phẩm lỗi của nhóm Programming Interns
         </Text>
-        <Text style={styles.text}>Developed With : </Text>
+        <Text style={styles.text}>Được múa bằng: </Text>
         <View style={styles.devView}>
           <Ionicons name="logo-react" size={90} color="#03E1E1"/>
           <Ionicons name="logo-nodejs" size={90} color="#34495E"/>

@@ -44,7 +44,7 @@ const CheckoutScreen = ({ navigation }) => {
           animationType: "zoom-in"
         })
         dispatch(clear())
-        navigation.navigate('Restaurents')
+        navigation.navigate("RestaurantScreen", { restaurant:route.params.restaurant, user:route.params.user})
       }else {
         toast.show(result.data.message, {
           type: "danger",

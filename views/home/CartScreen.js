@@ -43,11 +43,11 @@ const CartScreen = ({ navigation }) => {
           </View>
           <IconButton
             icon="basket-off"
-            color='#22A39F'
+            color='#659349'
             size={30}
             onPress={ () => {
               dispatch(clear())
-              toast.show("Your Cart is clear", {
+              toast.show("Giỏ hàng của bạn đã được dọn sạch", {
                 type: "info",
                 placement:"bottom",
                 duration: 4000,
@@ -84,10 +84,10 @@ const CartScreen = ({ navigation }) => {
                   >
                     <MaterialCommunityIcons 
                       name="chef-hat" 
-                      color='#00ABB3' 
+                      color='#659349' 
                       size={15}
                     />
-                    <Text style={{fontSize:20, fontWeight:'bold', color: '#00ABB3', marginLeft:5} }>{item.name}</Text>
+                    <Text style={{fontSize:20, fontWeight:'bold', color: '#659349', marginLeft:5} }>{item.name}</Text>
                   </View>
       
                   <View 
@@ -186,7 +186,7 @@ const CartScreen = ({ navigation }) => {
           <Button 
             mode="contained" 
             color="#3C4048"
-            onPress={() => navigation.navigate("Restaurents")}
+            onPress={() => navigation.navigate("RestaurantScreen", { restaurant:route.params.restaurant, user:route.params.user})}
             style={[styles.button, styles.leftBtn]}
           >
             <Ionicons name="chevron-back-outline" color={MD2Colors.white} size={30} />
