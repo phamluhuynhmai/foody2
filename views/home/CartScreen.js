@@ -39,7 +39,7 @@ const CartScreen = ({ navigation }) => {
       <View style={styles.container}>
         <View style={{ flexDirection: "row", alignItems: 'center'}}>
           <View style={{ flex: 1 }}>
-            <Text style={{fontSize:20, fontWeight:'bold'}}> Cart</Text>
+            <Text style={{fontSize:20, fontWeight:'bold'}}> Giỏ hàng </Text>
           </View>
           <IconButton
             icon="basket-off"
@@ -127,7 +127,7 @@ const CartScreen = ({ navigation }) => {
                         }
                       }}
                     />
-                    <View style={{width:100, height:30, backgroundColor:'#dadada', borderRadius:10}}>
+                    <View style={{width:100, height:30, backgroundColor:'#c9eed7', borderRadius:10}}>
                       <Text style={{fontSize:20, textAlign:'center'}}>{item.quantity}</Text>
                     </View>
                     <IconButton
@@ -148,10 +148,10 @@ const CartScreen = ({ navigation }) => {
                   >
                     <MaterialCommunityIcons 
                       name="equal" 
-                      color='#B2B2B2'
+                      color='#659349'
                       size={15}
                     />
-                    <Text style={{fontSize:20, color: '#B2B2B2', marginLeft:5, fontWeight: 'bold'} }>{item.quantity * item.price} ₫</Text>
+                    <Text style={{fontSize:20, color: '#659349', marginLeft:5, fontWeight: 'bold'} }>{item.quantity * item.price} ₫</Text>
                   </View>
 
                 </View>
@@ -178,14 +178,14 @@ const CartScreen = ({ navigation }) => {
               marginLeft:5 
             }}
           >
-            Total: {totalPrice} ₫
+            Tổng cộng: {totalPrice} ₫
           </Text>
         </View>
 
         <View style={styles.btnView}>
           <Button 
             mode="contained" 
-            color="#3C4048"
+            buttonColor="#659349"
             onPress={() => navigation.navigate("RestaurantScreen", { restaurant:route.params.restaurant, user:route.params.user})}
             style={[styles.button, styles.leftBtn]}
           >
@@ -193,7 +193,7 @@ const CartScreen = ({ navigation }) => {
           </Button>
           <Button 
             mode="contained" 
-            color="#00ABB3"
+            buttonColor="#659349"
             compact={true}
             onPress={() => navigation.navigate("CheckoutScreen", { restaurant:route.params.restaurant, user:route.params.user})}
             style={[styles.button, styles.rightBtn]}

@@ -22,7 +22,7 @@ const ChangeEmailScreen = ({ navigation }) => {
   const onSubmitPressed = async () => {
     setLoading(true)
     if(!currentEmail) {
-      toast.show("Current Email is required !", {
+      toast.show("Bắt buộc phải nhập email đang dùng!", {
         type: "danger",
         placement:"bottom",
         duration: 4000,
@@ -32,7 +32,7 @@ const ChangeEmailScreen = ({ navigation }) => {
       setLoading(false)
     }
     else if(!newEmail) {
-      toast.show("New Email is required !", {
+      toast.show("Bắt buộc phải nhập email mới!", {
         type: "danger",
         placement:"bottom",
         duration: 4000,
@@ -73,23 +73,23 @@ const ChangeEmailScreen = ({ navigation }) => {
 
   return (
     <View style= {styles.container}>
-      <Header title="Change Email" />
+      <Header title="Thay đổi email" />
       <View style={styles.main} >
         <View style={styles.inputView}>
           <TextInput
             style={styles.input}
-            activeOutlineColor="#1687FF"
+            activeOutlineColor="#659349"
             mode="outlined"
-            label="Current Email"
+            label="Email hiện tại"
             value={currentEmail}
             onChangeText={text => setCurrentEmail(text)}
             keyboardType="email-address"
           />
           <TextInput
             style={styles.input}
-            activeOutlineColor="#1687FF"
+            activeOutlineColor="#659349"
             mode="outlined"
-            label="New Email"
+            label="Email mới"
             value={newEmail}
             onChangeText={text => setNewEmail(text)}
             keyboardType="email-address"
@@ -98,15 +98,15 @@ const ChangeEmailScreen = ({ navigation }) => {
         <Button 
           mode="contained" 
           loading={loading}
-          color="#00ABB3"
+          buttonColor="#659349"
           onPress={onSubmitPressed}
           style={styles.button}
         >
-          Submit
+          HOÀN TẤT
         </Button>
         <View style={styles.infoBubble}>
           <Ionicons name="information-circle-sharp" size={35} color={MD2Colors.red500}/>
-          <Text style={styles.info}>You will be redirected to the <Text style={styles.link}>login page</Text> after updating your password</Text>
+          <Text style={styles.info}>Bạn sẽ được chuyển đến trang <Text style={styles.link}>đăng nhập</Text> sau khi cập nhật email</Text>
         </View>
       </View>
     </View>

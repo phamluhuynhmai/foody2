@@ -139,7 +139,7 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor: '#009387'
+    backgroundColor: '#659349'
   },
   header: {
     marginVertical: 20,
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
   },
   forgot: {
     fontSize: 13,
-    color: '#99A3A4',
+    color: '#659349',
   },
   button: {
     height: 60,
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   },
   link: {
     fontWeight: 'bold',
-    color: '#CACFD2',
+    color: '#659349',
   },
 })
 

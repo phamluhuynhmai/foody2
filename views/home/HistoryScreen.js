@@ -53,9 +53,9 @@ const HistoryScreen = ({ navigation }) => {
       flexGrow:1
     }}>
       <View style={styles.container}>
-        <Header title="Order History" />
+        <Header title="Lịch sử đặt hàng" />
         <Searchbar
-          placeholder="Search"
+          placeholder="Tìm kiếm"
           style={{
             marginVertical:15,
             padding:8,
@@ -167,7 +167,7 @@ const HistoryScreen = ({ navigation }) => {
               </View>
               <View style={styles.cardaction}>
                 <Button icon="format-list-text" mode="text" compact={true} onPress={() => navigation.navigate('OrderDetailScreen', { orders: order.items})}>
-                  details
+                  Chi tiết
                 </Button>
               </View>
             </TouchableOpacity>
@@ -209,6 +209,7 @@ const styles = StyleSheet.create({
   },
   cardaction:{
     flexDirection:'row',
+    color: '#659349',
     marginTop:20
   },
 })

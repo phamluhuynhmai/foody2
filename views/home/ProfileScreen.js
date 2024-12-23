@@ -52,7 +52,7 @@ const ProfileScreen = ({ navigation }) => {
   const onSubmitPressed = async () => {
     setLoading(true)
     if(!nom) {
-      toast.show("Name is required !", {
+      toast.show("Bắt buộc nhập tên!", {
         type: "danger",
         placement:"bottom",
         duration: 4000,
@@ -62,7 +62,7 @@ const ProfileScreen = ({ navigation }) => {
       setLoading(false)
     }
     else if(!prenom) {
-      toast.show(" Surname is required !", {
+      toast.show("Bắt buộc nhập họ!", {
         type: "danger",
         placement:"bottom",
         duration: 4000,
@@ -72,7 +72,7 @@ const ProfileScreen = ({ navigation }) => {
       setLoading(false)
     }
     else if(!telephone) {
-      toast.show("Phone number is required !", {
+      toast.show("Bắt buộc nhập số điện thoại!", {
         type: "danger",
         placement:"bottom",
         duration: 4000,
@@ -82,7 +82,7 @@ const ProfileScreen = ({ navigation }) => {
       setLoading(false)
     }
     else if(!adresse) {
-      toast.show("adress is required !", {
+      toast.show("Bắt buộc nhập địa chỉchỉ!", {
         type: "danger",
         placement:"bottom",
         duration: 4000,
@@ -143,33 +143,33 @@ const ProfileScreen = ({ navigation }) => {
       flexGrow: 1
     }}>
       <View style= {styles.container}>
-        <Header title="Profile" />
+        <Header title="Thông tin người dùng" />
         <View style={styles.main} >
           <View style={styles.inputView}>
             <View style={styles.fullname}>
               <TextInput
                 style={styles.mininput}
-                activeOutlineColor="#1687FF"
+                activeOutlineColor="#659349"
                 mode="outlined"
-                label="Name"
+                label="Tên"
                 value={nom}
                 onChangeText={text => setNom(text)}
               />
 
               <TextInput
                 style={styles.mininput}
-                activeOutlineColor="#1687FF"
+                activeOutlineColor="#659349"
                 mode="outlined"
-                label="Surname"
+                label="Họ"
                 value={prenom}
                 onChangeText={text => setPrenom(text)}
               />
             </View>
             <TextInput
               style={styles.input}
-              activeOutlineColor="#1687FF"
+              activeOutlineColor="#659349"
               mode="outlined"
-              label="Phone Number"
+              label="Số điện thoại"
               value={telephone}
               onChangeText={text => setTelephone(text)}
               keyboardType="numeric"
@@ -177,9 +177,9 @@ const ProfileScreen = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              activeOutlineColor="#1687FF"
+              activeOutlineColor="#659349"
               mode="outlined"
-              label="Adress"
+              label="Địa chỉ"
               value={adresse}
               onChangeText={text => setAdresse(text)}
             />
@@ -216,15 +216,15 @@ const ProfileScreen = ({ navigation }) => {
           <Button 
             mode="contained" 
             loading={loading}
-            color="#00ABB3"
+            buttonColor="#659349"
             onPress={onSubmitPressed}
             style={styles.button}
           >
-            Submit
+            CẬP NHẬT
           </Button>
           <View style={styles.infoBubble}>
             <Ionicons name="information-circle-sharp" size={35} color={MD2Colors.red500}/>
-            <Text style={styles.info}>You will be redirected to the <Text style={styles.link}>login page</Text> after updating your password</Text>
+            <Text style={styles.info}>Bạn sẽ được chuyển đến trang <Text style={styles.link}>đăng nhập</Text> sau khi cập nhật mật khẩu</Text>
           </View>
         </View>
       </View>

@@ -72,7 +72,7 @@ const MenuItemScreen = ({ navigation }) => {
               style={{ 
                 flexDirection: "row", 
                 marginLeft:5,
-                alignItems:'center' 
+                alignItems:'center'
               }}
             >
               <Ionicons 
@@ -86,7 +86,7 @@ const MenuItemScreen = ({ navigation }) => {
                   marginLeft:5
                 }}
               >
-                {route.params.restaurant.state}, Tunisie
+                {route.params.restaurant.state}, TP.HCM, Việt Nam
               </Text>
             </View>
           </View>
@@ -102,11 +102,12 @@ const MenuItemScreen = ({ navigation }) => {
         </View>
 
         <Searchbar
-          placeholder="Search"
+          placeholder="Tìm kiếm"
           style={{
             marginVertical:15,
             padding:8,
             borderRadius:30,
+            color:'#659349',
             backgroundColor:'#e3e3e3'
           }}
           clearIcon={()=><Ionicons name="filter-outline" color="#000" size={20}/>}
@@ -145,7 +146,7 @@ const MenuItemScreen = ({ navigation }) => {
                       marginLeft:5
                     }}
                   >
-                    20-30 min
+                    20-30 phút
                   </Text>
                   <Text>  </Text>
                   <Ionicons 

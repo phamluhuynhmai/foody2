@@ -51,7 +51,7 @@ const DrawerNavigation = ({ navigation }) => {
     >
       <Drawer.Screen 
         initialParams={{user: route.params.user}}
-        name="Restaurents" 
+        name="Restaurents" //sửa tên lại cái là lỗi liền á
         component={RestaurentsScreen} 
         options={{
           drawerIcon:({color}) => (
@@ -62,7 +62,7 @@ const DrawerNavigation = ({ navigation }) => {
 
       <Drawer.Screen 
         initialParams={{user: route.params.user}}
-        name="History" 
+        name="Lịch sử" 
         component={HistoryScreen} 
         options={{
           drawerIcon:({color}) => (
@@ -73,7 +73,7 @@ const DrawerNavigation = ({ navigation }) => {
 
       <Drawer.Screen 
         initialParams={{user: route.params.user}}
-        name="Profile" 
+        name="Thông tin người dùng" 
         component={ProfileScreen} 
         options={{
           drawerIcon:({color}) => (
@@ -83,7 +83,7 @@ const DrawerNavigation = ({ navigation }) => {
       />
       <Drawer.Screen 
         initialParams={{user: route.params.user}}
-        name="Change Email" 
+        name="Đổi email" 
         component={ChangeEmailScreen} 
         options={{
           drawerIcon:({color}) => (
@@ -94,7 +94,7 @@ const DrawerNavigation = ({ navigation }) => {
 
       <Drawer.Screen 
         initialParams={{user: route.params.user}}
-        name="Change Password" 
+        name="Đổi mật khẩu" 
         component={ChangePasswordScreen} 
         options={{
           drawerIcon:({color}) => (
@@ -105,7 +105,7 @@ const DrawerNavigation = ({ navigation }) => {
 
       <Drawer.Screen 
         initialParams={{user: route.params.user}}
-        name="About" 
+        name="Về chúng tôi" 
         component={AboutScreen} 
         options={{
           drawerIcon:({color}) => (

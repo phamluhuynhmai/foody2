@@ -64,7 +64,7 @@ const CheckoutScreen = ({ navigation }) => {
       <View style={styles.container}>
         <View style={{ flexDirection: "row", alignItems: 'center'}}>
           <View style={{ flex: 1 }}>
-            <Text style={{fontSize:20, fontWeight:'bold'}}> Checkout</Text>
+            <Text style={{fontSize:20, fontWeight:'bold'}}> Kiểm tra giỏ hàng</Text>
           </View>
           <View>
             <Badge visible={visible} style={styles.badge}>{total}</Badge>
@@ -76,33 +76,33 @@ const CheckoutScreen = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.card}>
-          <Text style={{fontSize:20, fontWeight:'bold', color: '#3C4048', marginBottom:10} }>Items</Text>
+          <Text style={{fontSize:20, fontWeight:'bold', color: '#3C4048', marginBottom:10} }>Món</Text>
           {
             cart.map((item, index) => (
               <TouchableOpacity key={index} style={styles.minicard}>
                 <Image style={styles.minicardimage}source={{uri:HOST+item.image}} />
                 <View style={styles.minicarddetails}>
-                  <Text style={{fontSize:20, fontWeight:'bold', color: '#3C4048', marginLeft:5}}>{item.name}</Text>
+                  <Text style={{fontSize:20, fontWeight:'bold', color: '#659349', marginLeft:5}}>{item.name}</Text>
                   <Text style={{fontSize:15, fontWeight:'bold', color: '#3C4048', marginLeft:5}}>{item.quantity+' x '+item.price} ₫</Text>
                 </View>
               </TouchableOpacity>
             ))
           }
-          <Text style={{fontSize:15, fontWeight:'bold', color: '#3C4048', marginLeft:5} }></Text>
+          <Text style={{fontSize:15, fontWeight:'bold', color: '#659349', marginLeft:5} }></Text>
           <Button 
             mode="text" 
-            color="#3C4048"
+            textColor='#659349'
             style={styles.button}
           >
-              Total : {totalPrice} ₫
+              Tổng cộng: {totalPrice} ₫
           </Button>
           <Button 
             mode="contained" 
-            color="#00ABB3"
+            buttonColor="#659349"
             onPress={onOrderSubmit}
             style={styles.button}
           >
-              Order
+              Đặt hàng
           </Button>
         </View>
       </View>
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom:10,
     borderWidth:1,
-    borderColor:"#00ABB3",
+    borderColor:"#659349",
     borderRadius:10,
     padding:10,
   },

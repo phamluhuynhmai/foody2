@@ -76,12 +76,12 @@ const RestaurentsScreen = ({ navigation }) => {
       <View style={styles.container}>
         <View style={{ flexDirection: "row", alignItems: 'center'}}>
           <View style={{ flex: 1 }}>
-            <Text style={{fontSize:20, fontWeight:'bold'}}> Welcome {route.params.user.name}</Text>
+            <Text style={{fontSize:20, fontWeight:'bold'}}> Hé lô {route.params.user.name}</Text>
             <View 
               style={{ 
                 flexDirection: "row", 
                 marginLeft:5,
-                alignItems:'center' 
+                alignItems:'center',
               }}
             >
               <Ionicons 
@@ -95,7 +95,7 @@ const RestaurentsScreen = ({ navigation }) => {
                   marginLeft:5
                 }}
               >
-                {route.params.user.state}, Tunisia
+                {route.params.user.state}, TP.HCM, Việt Nam
               </Text>
             </View>
           </View>
@@ -113,12 +113,13 @@ const RestaurentsScreen = ({ navigation }) => {
         </View>
 
         <Searchbar
-          placeholder="Search"
+          placeholder="Tìm kiếm"
           style={{
             marginVertical:15,
             padding:8,
             borderRadius:30,
-            backgroundColor:'#e3e3e3'
+            backgroundColor:'#e3e3e3',
+            color: '#659349'
           }}
           clearIcon={()=><Ionicons name="filter-outline" color="#000" size={20}/>}
           onChangeText={(text) => onChangeSearch(text)}
@@ -279,7 +280,7 @@ const RestaurentsScreen = ({ navigation }) => {
                     marginLeft:5
                   }}
                 >
-                  Speciality : {restaurant.speciality}
+                  Thể loại: {restaurant.speciality}
                 </Text>
                 <Text>  </Text>
               </View>

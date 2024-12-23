@@ -22,7 +22,7 @@ const ChangePasswordScreen = ({ navigation }) => {
   const onSubmitPressed = async () => {
     setLoading(true)
     if(!currentPassword) {
-      toast.show("Current Password is required !", {
+      toast.show("Bắt buộc phải nhập mật khẩu hiện tại!", {
         type: "warning",
         placement:"bottom",
         duration: 4000,
@@ -32,7 +32,7 @@ const ChangePasswordScreen = ({ navigation }) => {
       setLoading(false)
     }
     else if(!newPassword) {
-      toast.show("New Password is required  !", {
+      toast.show("Bắt buộc phải nhập mật khẩu!", {
         type: "warning",
         placement:"bottom",
         duration: 4000,
@@ -73,24 +73,24 @@ const ChangePasswordScreen = ({ navigation }) => {
 
   return (
     <View style= {styles.container}>
-      <Header title="Change Password" />
+      <Header title="Thay đổi mật khẩu" />
       <View style={styles.main} >
         <View style={styles.inputView}>
           <TextInput
             style={styles.input}
-            activeOutlineColor="#1687FF"
+            activeOutlineColor="#659349"
             secureTextEntry={true} 
             mode="outlined"
-            label="Current Password"
+            label="Mật khẩu hiện tại"
             value={currentPassword}
             onChangeText={text => setCurrentPassword(text)}
           />
           <TextInput
             style={styles.input}
-            activeOutlineColor="#1687FF"
+            activeOutlineColor="#659349"
             secureTextEntry={true} 
             mode="outlined"
-            label="New Password"
+            label="Mật khẩu mới"
             value={newPassword}
             onChangeText={text => setNewPassword(text)}
           />
@@ -98,15 +98,15 @@ const ChangePasswordScreen = ({ navigation }) => {
         <Button 
           mode="contained" 
           loading={loading}
-          color="#00ABB3"
+          buttonColor="#659349"
           onPress={onSubmitPressed}
           style={styles.button}
         >
-          Submit
+          HOÀN TẤT
         </Button>
         <View style={styles.infoBubble}>
           <Ionicons name="information-circle-sharp" size={35} color={MD2Colors.red500}/>
-          <Text style={styles.info}>You will be redirected to the <Text style={styles.link}>login page</Text> after updating your password</Text>
+          <Text style={styles.info}>Bạn sẽ được chuyển đến trang <Text style={styles.link}>đăng nhập</Text> sau khi cập nhật mật khẩu</Text>
         </View>
       </View>
     </View>

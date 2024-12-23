@@ -82,7 +82,7 @@ const CustomDrawer = props => {
                 marginLeft: 5,
               }}
             >
-              Logout
+              Đăng xuất
             </Text>
           </View>
         </TouchableOpacity>

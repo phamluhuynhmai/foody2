@@ -168,8 +168,8 @@ const RegisterScreen = ({ navigation }) => {
           <Text style={styles.title}></Text>
         </View>
         <View style={styles.main} >
-          <Text style={{fontSize: 30, color: '#000', fontWeight: 'bold'}}>
-            Taoj tài khoản
+          <Text style={{fontSize: 30, color: '#659349', fontWeight: 'bold'}}>
+            Tạo tài khoản
           </Text>
           <View style={styles.inputView}>
             <View style={styles.fullname}>
@@ -241,7 +241,7 @@ const RegisterScreen = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              activeOutlineColor="#1687FF"
+              activeOutlineColor="#659349"
               mode="outlined"
               label="Email"
               value={email}
@@ -251,10 +251,10 @@ const RegisterScreen = ({ navigation }) => {
 
             <TextInput
               style={styles.input}
-              activeOutlineColor="#1687FF"
+              activeOutlineColor="#659349"
               secureTextEntry={true} 
               mode="outlined"
-              label="Password"
+              label="Mật khẩu"
               value={password}
               onChangeText={text => setPassword(text)}
             />
@@ -283,7 +283,7 @@ const RegisterScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor: '#009387'
+    backgroundColor: '#659349'
   },
   header: {
     marginVertical: 20,
@@ -348,7 +348,7 @@ const styles = StyleSheet.create({
   },
   link: {
     fontWeight: 'bold',
-    color: '#1687FF',
+    color: '#659349',
   },
 })
 
