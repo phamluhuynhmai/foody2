@@ -13,6 +13,7 @@ const ChangePasswordScreen = ({ navigation }) => {
 
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [loading, setLoading] = useState(false);
 
@@ -40,10 +41,22 @@ const ChangePasswordScreen = ({ navigation }) => {
         animationType: "zoom-in",
       })
       setLoading(false)
-    }else {
+    }
+    else if (newPassword != confirmPassword) {
+      toast.show("Nhập lại mật khẩu không đúng!", {
+        type: "warning",
+        placement:"bottom",
+        duration: 4000,
+        offset: 30,
+        animationType: "zoom-in",
+      })
+      setLoading(false)
+    }
+    else {
       await axios.put(`${API}/auth/updatepassword/${route.params.user._id}`, {
         currentPassword: currentPassword,
-        newPassword: newPassword
+        newPassword: newPassword,
+        confirmPassword: confirmPassword,
       }).then((result) => {
         if(result.data.success) {
           toast.show(result.data.message, {
@@ -93,6 +106,15 @@ const ChangePasswordScreen = ({ navigation }) => {
             label="Mật khẩu mới"
             value={newPassword}
             onChangeText={text => setNewPassword(text)}
+          />
+          <TextInput
+            style={styles.input}
+            activeOutlineColor="#659349"
+            secureTextEntry={true} 
+            mode="outlined"
+            label="Nhập lại mật khẩu"
+            value={confirmPassword}
+            onChangeText={text => setConfirmPassword(text)}
           />
         </View>
         <Button 

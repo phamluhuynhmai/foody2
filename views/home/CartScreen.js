@@ -11,7 +11,7 @@ import {
   clear,
   removeItem,
 } from "./../../redux/features/CartSlice";
-import { useRoute } from '@react-navigation/native';
+import { StackActions, useRoute } from '@react-navigation/native';
 import { useToast } from 'react-native-toast-notifications';
 import { HOST } from '../../configs';
 
@@ -186,7 +186,7 @@ const CartScreen = ({ navigation }) => {
           <Button 
             mode="contained" 
             buttonColor="#659349"
-            onPress={() => navigation.navigate("RestaurantScreen", { restaurant:route.params.restaurant, user:route.params.user})}
+            onPress={() => navigation.popTo('Hello', {user: route.params.user})}
             style={[styles.button, styles.leftBtn]}
           >
             <Ionicons name="chevron-back-outline" color={MD2Colors.white} size={30} />

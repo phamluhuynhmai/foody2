@@ -1,12 +1,13 @@
 import { View, StyleSheet, Image } from 'react-native'
 import React, { useEffect } from 'react'
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
+import { StackActions } from '@react-navigation/native';
 
 const SplashScreen = ({ navigation }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('StartScreen')
+      navigation.replace('StartScreen')
     },5000)
   })
   return (

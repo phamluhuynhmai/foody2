@@ -45,13 +45,14 @@ const DrawerNavigation = ({ navigation }) => {
 
   return (
     <Drawer.Navigator
-      initialRouteName="Restaurents"
+      initialRouteName="Quán ăn"
       screenOptions={{ headerShown: false}}
       drawerContent={props => <CustomDrawer {...props} />}
     >
       <Drawer.Screen 
         initialParams={{user: route.params.user}}
-        name="Restaurents" //sửa tên lại cái là lỗi liền á
+        name="Quán ăn" //sửa tên lại cái là lỗi liền á
+                        // from Báo: phải sửa cái ở trên cho trùng
         component={RestaurentsScreen} 
         options={{
           drawerIcon:({color}) => (

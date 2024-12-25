@@ -82,7 +82,7 @@ const ProfileScreen = ({ navigation }) => {
       setLoading(false)
     }
     else if(!adresse) {
-      toast.show("Bắt buộc nhập địa chỉchỉ!", {
+      toast.show("Bắt buộc nhập địa chỉ!", {
         type: "danger",
         placement:"bottom",
         duration: 4000,

@@ -2,7 +2,7 @@ import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Image } from 'rea
 import React,{ useState } from 'react'
 import { IconButton, MD2Colors, Badge, Button } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
-import { useRoute } from '@react-navigation/native';
+import { StackActions, useRoute } from '@react-navigation/native';
 import { useToast } from 'react-native-toast-notifications';
 import axios from 'axios'
 import { API } from './../../configs'
@@ -44,7 +44,7 @@ const CheckoutScreen = ({ navigation }) => {
           animationType: "zoom-in"
         })
         dispatch(clear())
-        navigation.navigate("RestaurantScreen", { restaurant:route.params.restaurant, user:route.params.user})
+        navigation.popTo('Hello', {user: route.params.user})
       }else {
         toast.show(result.data.message, {
           type: "danger",
