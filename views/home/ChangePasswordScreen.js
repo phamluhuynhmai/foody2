@@ -69,7 +69,7 @@ const ChangePasswordScreen = ({ navigation }) => {
           setLoading(false);
           setCurrentPassword('');
           setNewPassword('');
-          navigation.navigate("LoginScreen");
+          navigation.popTo("LoginScreen");
         }else {
           toast.show(result.data.message, {
             type: "danger",

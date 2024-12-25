@@ -144,7 +144,7 @@ const RegisterScreen = ({ navigation }) => {
           setState("");
           setEmail("");
           setPassword("");
-          navigation.navigate("LoginScreen");
+          navigation.replace("LoginScreen");
         }else {
           toast.show(result.data.message, {
             type: "danger",
@@ -270,7 +270,7 @@ const RegisterScreen = ({ navigation }) => {
           </Button>
           <View style={styles.row}>
           <Text>Bạn đã có tài khoản? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+          <TouchableOpacity onPress={() => navigation.replace('LoginScreen')}>
             <Text style={styles.link}>Đăng nhập</Text>
           </TouchableOpacity>
         </View>

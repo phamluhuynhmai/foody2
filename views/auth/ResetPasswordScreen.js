@@ -38,7 +38,7 @@ const ResetPasswordScreen = ({ navigation }) => {
           })
           setLoading(false);
           setEmail("");
-          navigation.navigate('LoginScreen')
+          navigation.popTo('LoginScreen')
         }else {
           toast.show(response.data.message, {
             type: "danger",

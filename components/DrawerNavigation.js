@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import React, { useEffect, useState } from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useToast } from 'react-native-toast-notifications';
 import { useRoute } from '@react-navigation/native';
-import CustomDrawer from './CustomDrawer';
+
 import { 
   RestaurentsScreen, 
   HistoryScreen, 
@@ -14,109 +14,100 @@ import {
   AboutScreen 
 } from './../views';
 
-const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
-const DrawerNavigation = ({ navigation }) => {
-  
+const TabNavigation = ({ navigation }) => {
   const toast = useToast();
   const route = useRoute();
 
-  useEffect(()=> {
+  useEffect(() => {
     CheckToken();
-  }, [])
+  }, []);
 
   const CheckToken = async () => {
     try {
-      const value = await AsyncStorage.getItem('@token')
-      if(value == null || value == undefined ) {
-        toast.show("Not authorized, please log in !", {
-          type: "danger",
-          placement:"bottom",
+      const value = await AsyncStorage.getItem('@token');
+      if (value == null || value == undefined) {
+        toast.show('Not authorized, please log in!', {
+          type: 'danger',
+          placement: 'bottom',
           duration: 4000,
           offset: 30,
-          animationType: "zoom-in"
-        })
-        navigation.navigate("LoginScreen");
+          animationType: 'zoom-in',
+        });
+        navigation.popTo('LoginScreen');
       }
-    } catch(e) {
-      console.log(e)
+    } catch (e) {
+      console.log(e);
     }
-  }
+  };
 
   return (
-    <Drawer.Navigator
-      initialRouteName="Quán ăn"
-      screenOptions={{ headerShown: false}}
-      drawerContent={props => <CustomDrawer {...props} />}
+    <Tab.Navigator
+      initialRouteName="Restaurents"
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarActiveTintColor: '#659349',
+        tabBarInactiveTintColor: '#8E8E93',
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Restaurents') {
+            iconName = focused ? 'restaurant' : 'restaurant-outline';
+          } else if (route.name === 'History') {
+            iconName = focused ? 'sync' : 'sync-outline';
+          } else if (route.name === 'Profile') {
+            iconName = focused ? 'person' : 'person-outline';
+          } else if (route.name === 'ChangeEmail') {
+            iconName = focused ? 'mail' : 'mail-outline';
+          } else if (route.name === 'ChangePassword') {
+            iconName = focused ? 'lock-closed' : 'lock-closed-outline';
+          } else if (route.name === 'About') {
+            iconName = focused ? 'information-circle' : 'information-circle-outline';
+          }
+
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
     >
-      <Drawer.Screen 
-        initialParams={{user: route.params.user}}
-        name="Quán ăn" //sửa tên lại cái là lỗi liền á
-                        // from Báo: phải sửa cái ở trên cho trùng
+      <Tab.Screen 
+        name="Restaurents" 
         component={RestaurentsScreen} 
-        options={{
-          drawerIcon:({color}) => (
-            <Ionicons name="restaurant-outline" size={22} color={color}/>
-          ),
-        }}
+        initialParams={{ user: route.params.user }} 
+        options={{ title: 'Quán ăn' }} 
       />
-
-      <Drawer.Screen 
-        initialParams={{user: route.params.user}}
-        name="Lịch sử" 
+      <Tab.Screen 
+        name="History" 
         component={HistoryScreen} 
-        options={{
-          drawerIcon:({color}) => (
-            <Ionicons name="sync-outline" size={22} color={color}/>
-          ),
-        }}
+        initialParams={{ user: route.params.user }} 
+        options={{ title: 'Lịch sử' }} 
       />
-
-      <Drawer.Screen 
-        initialParams={{user: route.params.user}}
-        name="Thông tin người dùng" 
+      <Tab.Screen 
+        name="Profile" 
         component={ProfileScreen} 
-        options={{
-          drawerIcon:({color}) => (
-            <Ionicons name="person-outline" size={22} color={color}/>
-          ),
-        }}
+        initialParams={{ user: route.params.user }} 
+        options={{ title: 'Thông tin người dùng' }} 
       />
-      <Drawer.Screen 
-        initialParams={{user: route.params.user}}
-        name="Đổi email" 
+      <Tab.Screen 
+        name="ChangeEmail" 
         component={ChangeEmailScreen} 
-        options={{
-          drawerIcon:({color}) => (
-            <Ionicons name="mail-outline" size={22} color={color}/>
-          ),
-        }}
+        initialParams={{ user: route.params.user }} 
+        options={{ title: 'Đổi email' }} 
       />
-
-      <Drawer.Screen 
-        initialParams={{user: route.params.user}}
-        name="Đổi mật khẩu" 
+      <Tab.Screen 
+        name="ChangePassword" 
         component={ChangePasswordScreen} 
-        options={{
-          drawerIcon:({color}) => (
-            <Ionicons name="lock-closed-outline" size={22} color={color}/>
-          ),
-        }}
+        initialParams={{ user: route.params.user }} 
+        options={{ title: 'Đổi mật khẩu' }} 
       />
-
-      <Drawer.Screen 
-        initialParams={{user: route.params.user}}
-        name="Về chúng tôi" 
+      <Tab.Screen 
+        name="About" 
         component={AboutScreen} 
-        options={{
-          drawerIcon:({color}) => (
-            <Ionicons name="information-circle-outline" size={22} color={color}/>
-          ),
-        }}
+        initialParams={{ user: route.params.user }} 
+        options={{ title: 'Về chúng tôi' }} 
       />
+    </Tab.Navigator>
+  );
+};
 
-    </Drawer.Navigator>
-  )
-}
-
-export default DrawerNavigation
+export default TabNavigation;

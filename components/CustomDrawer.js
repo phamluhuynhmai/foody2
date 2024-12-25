@@ -27,7 +27,7 @@ const CustomDrawer = props => {
   const logout = async () => {
     try {
       await AsyncStorage.removeItem('@token');
-      props.navigation.navigate("LoginScreen");
+      props.navigation.popTo("LoginScreen");
 
     } catch (error) {
       console.log(error)
