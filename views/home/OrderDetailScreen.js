@@ -1,21 +1,41 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import React,{ useState } from 'react'
+import React,{ useState, useCallback } from 'react'
 import { IconButton, MD2Colors, Badge } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useFocusEffect } from '@react-navigation/native';
 import { HOST } from '../../configs';
 
 const OrderDetailScreen = ({ navigation }) => {
 
   const [visible, setVisible] = useState(true);
   const route = useRoute();
+  const [restaurants, setRestaurants] = useState([])
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchAPI()
+      return () => {
+        console.log('Screen was unfocused');   
+      };
+    }, [])
+  );
+
+  const fetchAPI = async () => {
+    await axios.get(`${API}/restaurants/get`)
+    .then((result) => {
+      if(result.data.success){
+        setRestaurants(result.data.restaurants)
+        setBackup(result.data.restaurants)
+      }
+    })
+  }
 
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row", alignItems: 'center'}}>
         <View style={{ flex: 1 }}>
-          <Text style={{fontSize:20, fontWeight:'bold'}}> Order Details</Text>
+          <Text style={{fontSize:20, fontWeight:'bold'}}> Chi tiết đơn hàng</Text>
         </View>
         <View>
           <Badge visible={visible} style={styles.badge}>0</Badge>
@@ -32,7 +52,8 @@ const OrderDetailScreen = ({ navigation }) => {
           <TouchableOpacity 
             key={index}
             style={styles.card} 
-            onPress={() => navigation.navigate('MenuItemScreen')}
+            // onPress={() => navigation.navigate('MenuItemScreen', {restaurant: restaurants.find(r => r._id == order.restaurantID)})}
+            // cái này lỗi cmnr
           >
             <View style={styles.cardcontent}>
               <Image style={styles.cardimage} source={{uri: HOST+order.image}} />

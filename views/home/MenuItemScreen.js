@@ -49,7 +49,7 @@ const MenuItemScreen = ({ navigation }) => {
 
   const onChangeSearch = (text) => {
     const query = backup.filter((item) => {
-      const item_data = `${item.nom.toUpperCase()}`;
+      const item_data = `${item.name.toUpperCase()}`;
       const text_data = text.toUpperCase();
       return item_data.indexOf(text_data) > -1;
     });

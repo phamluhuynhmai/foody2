@@ -115,7 +115,7 @@ const HistoryScreen = ({ navigation }) => {
                     </Text>
                   </View>
                 {
-                  order.statut === true ?
+                  order.status === true ?
                     <View 
                       style={{ 
                         flexDirection: "row", 
