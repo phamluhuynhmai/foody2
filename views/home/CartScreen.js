@@ -11,7 +11,7 @@ import {
   clear,
   removeItem,
 } from "./../../redux/features/CartSlice";
-import { StackActions, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import { useToast } from 'react-native-toast-notifications';
 import { HOST } from '../../configs';
 

@@ -2,7 +2,7 @@ import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Image } from 'rea
 import React,{ useState } from 'react'
 import { IconButton, MD2Colors, Badge, Button } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
-import { StackActions, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import { useToast } from 'react-native-toast-notifications';
 import axios from 'axios'
 import { API } from './../../configs'

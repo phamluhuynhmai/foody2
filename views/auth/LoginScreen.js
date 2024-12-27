@@ -19,7 +19,8 @@ const LoginScreen = ({ navigation }) => {
       const userObject = JSON.stringify(user);
       await AsyncStorage.setItem('@token', token);
       await AsyncStorage.setItem('@user', userObject);
-      navigation.navigate("Hello", {user: user});
+      navigation.popToTop()
+      navigation.replace("Hello", {user: user});
     } catch (e) {
       console.log(e);
     }

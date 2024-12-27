@@ -1,16 +1,50 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Alert, BackHandler } from 'react-native'
 import React, {useState, useCallback} from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Searchbar, Chip, IconButton, MD2Colors, Avatar, Badge} from 'react-native-paper';
 import axios from 'axios'
 import { useToast } from 'react-native-toast-notifications';
-import { useRoute, useFocusEffect } from '@react-navigation/native';
+import { useRoute, useFocusEffect, StackActions } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux'
 import { API, HOST } from './../../configs';
 import { cartTotalSelector } from "./../../redux/selector";
 
 const RestaurentsScreen = ({ navigation }) => {
+
+  React.useEffect(() => {
+    const onBackPress = () => {
+      if (navigation.canGoBack()) {
+        navigation.goBack()
+        return true
+      }
+      Alert.alert(
+        'Đăng xuất',
+        'Bạn có chắc chắn muốn đăng xuất?',
+        [
+          {
+            text: 'Không',
+            onPress: () => {
+            },
+            style: 'cancel',
+          },
+          { text: 'Có', onPress: () => {
+            navigation.replace('StartScreen')
+          }},
+        ],
+        { cancelable: false }
+      );
+  
+      return true;
+    };
+  
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      onBackPress
+    );
+  
+    return () => backHandler.remove();
+  }, []);
 
   const [restaurants, setRestaurants] = useState([])
   const [backup, setBackup] = useState([])
