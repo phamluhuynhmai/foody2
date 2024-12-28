@@ -7,7 +7,7 @@ const SplashScreen = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.replace('StartScreen')
-    },5000)
+    }, 2000)
   })
   return (
     <View style={styles.container}>

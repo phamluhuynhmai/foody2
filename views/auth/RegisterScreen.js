@@ -6,6 +6,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useToast } from 'react-native-toast-notifications';
 import axios from 'axios'
 import { API } from './../../configs';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { districts as districtsImported } from '../../data/districts';
 
 const RegisterScreen = ({ navigation }) => {
 
@@ -13,7 +15,7 @@ const RegisterScreen = ({ navigation }) => {
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [state, setState] = useState("");
+  const [district, setDistrict] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,30 +23,7 @@ const RegisterScreen = ({ navigation }) => {
 
   const toast = useToast();
 
-  const states = [
-    "Q1",
-"Q3",
-"Q4",
-"Q5",
-"Q6",
-"Q7",
-"Q8",
-"Q10",
-"Q11",
-"Q12",
-"BinhThanh",
-"PhuNhuan",
-"GoVap",
-"TanBinh",
-"TanPhu",
-"BinhTan",
-"ThuDuc",
-"HocMon",
-"CuChi",
-"BinhChanh",
-"NhaBe",
-"CanGio"
-  ];
+  const districts = districtsImported
 
   const onSignupPressed = async () => {
     setLoading(true)
@@ -88,7 +67,7 @@ const RegisterScreen = ({ navigation }) => {
       })
       setLoading(false)
     }
-    /*else if(!state) {
+    /*else if(!district) {
       toast.show("State is required !", {
         type: "danger",
         placement:"bottom",
@@ -123,7 +102,7 @@ const RegisterScreen = ({ navigation }) => {
         surname:surname,
         phone: phone,
         address:address,
-        state:"Q1", // todo: fix state:state
+        state:district,
         email:email,
         password: password
       }).then((result) => {
@@ -141,7 +120,7 @@ const RegisterScreen = ({ navigation }) => {
           setSurname("");
           setPhone("");
           setAddress("");
-          setState("");
+          setDistrict("");
           setEmail("");
           setPassword("");
           navigation.replace("LoginScreen");
@@ -211,32 +190,68 @@ const RegisterScreen = ({ navigation }) => {
             />
 
             <SelectDropdown
-              data={states}
+              data={districts}
               onSelect={(selectedItem, index) => {
-                console.log(selectedItem, index)
-                setState(selectedItem)
+                // console.log(selectedItem, index);
+                setDistrict(selectedItem)
               }}
-              defaultButtonText={'Select State'}
-              buttonTextAfterSelection={(selectedItem, index) => {
-                // text represented after item is selected
-                // if data array is an array of objects then return selectedItem.property to render after item is selected
-                return selectedItem
+              renderButton={(selectedItem, isOpened) => {
+                return (
+                  <View style={styles.dropdownButtonStyle}>
+                    <Text
+                      style={styles.dropdownButtonTxtStyle}>
+                      {(selectedItem && selectedItem.title) || 'Quận / Huyện'}
+                    </Text>
+                    <Icon
+                      name={isOpened ? 'chevron-up' : 'chevron-down'}
+                      style={styles.dropdownButtonArrowStyle}
+                    />
+                  </View>
+                );
               }}
-              rowTextForSelection={(item, index) => {
-                // text represented for each item in dropdown
-                // if data array is an array of objects then return item.property to represent item in dropdown
-                return item
+              renderItem={(item, index, isSelected) => {
+                return (
+                  <View style={{...styles.dropdownItemStyle, ...(isSelected && {backgroundColor: '#D2D9DF'})}}>
+                    <Icon name={item.icon} style={styles.dropdownItemIconStyle} />
+                    <Text style={styles.dropdownItemTxtStyle}>{item.title}</Text>
+                  </View>
+                );
               }}
+              showsVerticalScrollIndicator={false}
+              dropdownStyle={styles.dropdownMenuStyle}
+            />
 
-              buttonStyle={styles.dropdown1BtnStyle}
-              buttonTextStyle={styles.dropdown1BtnTxtStyle}
-              renderDropdownIcon={isOpened => {
-                return <FontAwesome name={isOpened ? 'chevron-up' : 'chevron-down'} color={'#444'} size={18} />;
+            <SelectDropdown
+              data={[...(districts.find((d) => d.title == district.title) || {value: []}).value]}
+              onSelect={(selectedItem, index) => {
+                // console.log(selectedItem, index);
+                // setDistrict(selectedItem)
+                setWard(selectedItem)
               }}
-              dropdownIconPosition={'right'}
-              dropdownStyle={styles.dropdown1DropdownStyle}
-              rowStyle={styles.dropdown1RowStyle}
-              rowTextStyle={styles.dropdown1RowTxtStyle}
+              renderButton={(selectedItem, isOpened) => {
+                return (
+                  <View style={styles.dropdownButtonStyle}>
+                    <Text
+                      style={styles.dropdownButtonTxtStyle}>
+                      {(selectedItem && [...(districts.find((d) => d.title == district.title) || {value: []}).value].includes(selectedItem)) ? selectedItem : 'Phường / Xã'}
+                    </Text>
+                    <Icon
+                      name={isOpened ? 'chevron-up' : 'chevron-down'}
+                      style={styles.dropdownButtonArrowStyle}
+                    />
+                  </View>
+                );
+              }}
+              renderItem={(item, index, isSelected) => {
+                return (
+                  <View style={{...styles.dropdownItemStyle, ...(isSelected && {backgroundColor: '#D2D9DF'})}}>
+                    <Icon name={item.icon} style={styles.dropdownItemIconStyle} />
+                    <Text style={styles.dropdownItemTxtStyle}>{item}</Text>
+                  </View>
+                );
+              }}
+              showsVerticalScrollIndicator={false}
+              dropdownStyle={styles.dropdownMenuStyle}
             />
 
             <TextInput
@@ -349,6 +364,58 @@ const styles = StyleSheet.create({
   link: {
     fontWeight: 'bold',
     color: '#659349',
+  },
+  dropdownButtonStyle: {
+    width: '100%',
+    marginHorizontal: 0,
+    marginBottom: 10,
+    margin: '1%',
+    height: 50,
+    // backgroundColor: '#FFF',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#888',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+  },
+  dropdownButtonTxtStyle: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#444',
+  },
+  dropdownButtonArrowStyle: {
+    fontSize: 28,
+  },
+  dropdownButtonIconStyle: {
+    fontSize: 28,
+    marginRight: 8,
+  },
+  dropdownMenuStyle: {
+    // backgroundColor: '#E9ECEF',
+    // height: '100%',
+    borderRadius: 8,
+    flex: 1,
+  },
+  dropdownItemStyle: {
+    width: '100%',
+    flexDirection: 'row',
+    paddingHorizontal: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  dropdownItemTxtStyle: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#444',
+  },
+  dropdownItemIconStyle: {
+    fontSize: 28,
+    marginRight: 8,
   },
 })
 
