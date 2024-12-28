@@ -47,6 +47,7 @@ const RestaurentsScreen = ({ navigation }) => {
   }, []);
 
   const [restaurants, setRestaurants] = useState([])
+  const [orders, setOrders] = useState([])
   const [backup, setBackup] = useState([])
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -74,6 +75,12 @@ const RestaurentsScreen = ({ navigation }) => {
       if(result.data.success){
         setRestaurants(result.data.restaurants)
         setBackup(result.data.restaurants)
+      }
+    })
+    await axios.get(`${API}/orders/history/${route.params.user._id}`)
+    .then((result) => {
+      if(result.data.success) {
+        setOrders(result.data.orders);
       }
     })
   }
@@ -239,6 +246,92 @@ const RestaurentsScreen = ({ navigation }) => {
             </Chip>
           </View>
         </ScrollView>
+        <Text style={{fontSize:20, fontWeight:'bold'}}>
+          {orders.length ? '\nĐặt lại' : ''}
+        </Text>
+        {
+          (orders[orders.length - 1] || {items: []}).items.map((item, index) => {
+            if (index > 2)
+              return
+            return (
+            <TouchableOpacity 
+              key={index}
+              style={styles.card} 
+              disabled={true}
+            >
+              <Image source={{uri: HOST+item.image}} style={{width:"100%",height:200}}/>
+              <View style={{ flexDirection: "row", alignItems: 'center'}}>
+              <View style={{ flex: 1 }}>
+                
+                <Text style={{fontSize:20, fontWeight:'bold',marginVertical:5}}> {item.name}</Text>
+                <View 
+                  style={{ 
+                    flexDirection: "row", 
+                    marginLeft:5,
+                    alignItems:'center' ,
+                    marginVertical:5
+                  }}
+                >
+                  <Ionicons 
+                    name="time-outline" 
+                    color="gray" 
+                    size={15}
+                  />
+                  <Text 
+                    style={{
+                      color:"gray", 
+                      marginLeft:5
+                    }}
+                  >
+                    20-30 phút
+                  </Text>
+                  <Text>  </Text>
+                  <Ionicons 
+                    name="star" 
+                    color="orange" 
+                    size={15}
+                  />
+                  <Text            
+                    style={{
+                      color:"gray", 
+                      marginLeft:5
+                    }}>
+                    5
+                  </Text>
+                </View>
+    
+                <View 
+                  style={{ 
+                    flexDirection: "row", 
+                    marginLeft:5,
+                    alignItems:'center',
+                    marginVertical:5
+                  }}
+                >
+                  <Ionicons 
+                    name="pricetag-outline" 
+                    color={MD2Colors.black500} 
+                    size={15}
+                  />
+                  <Text style={{fontSize:20, fontWeight:'bold', color: MD2Colors.black500, marginLeft:5} }>
+                    {item.price} ₫
+                  </Text>
+                </View>
+              </View>
+              <IconButton
+                icon="cart"
+                color={MD2Colors.blue500}
+                size={30}
+                onPress={() =>
+                  console.log(item)
+                  // dispatch(addToCart(item))
+                }
+              />
+            </View>
+            </TouchableOpacity>
+          )})
+        }
+        <Text style={{fontSize:20, fontWeight:'bold'}}>Quán ăn</Text>
         {
           restaurants.map((restaurant, index) => (
             <TouchableOpacity 

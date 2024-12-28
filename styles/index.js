@@ -66,6 +66,58 @@ const styles = StyleSheet.create({
   dropdown1DropdownStyle: {backgroundColor: '#EFEFEF'},
   dropdown1RowStyle: {backgroundColor: '#EFEFEF', borderBottomColor: '#C5C5C5'},
   dropdown1RowTxtStyle: {color: '#444', textAlign: 'left'},
+  dropdownButtonStyle: {
+    width: '90%',
+    marginHorizontal: 20,
+    marginBottom: 10,
+    margin: '1%',
+    height: 50,
+    // backgroundColor: '#FFF',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#888',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+  },
+  dropdownButtonTxtStyle: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#444',
+  },
+  dropdownButtonArrowStyle: {
+    fontSize: 28,
+  },
+  dropdownButtonIconStyle: {
+    fontSize: 28,
+    marginRight: 8,
+  },
+  dropdownMenuStyle: {
+    // backgroundColor: '#E9ECEF',
+    // height: '100%',
+    borderRadius: 8,
+    flex: 1,
+  },
+  dropdownItemStyle: {
+    width: '100%',
+    flexDirection: 'row',
+    paddingHorizontal: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  dropdownItemTxtStyle: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#444',
+  },
+  dropdownItemIconStyle: {
+    fontSize: 28,
+    marginRight: 8,
+  },
 })
 
 export default styles
