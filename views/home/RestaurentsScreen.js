@@ -2,13 +2,21 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Alert, Bac
 import React, {useState, useCallback} from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { Searchbar, Chip, IconButton, MD2Colors, Avatar, Badge} from 'react-native-paper';
+import { Searchbar, Chip, IconButton, MD2Colors, Avatar, Badge, DefaultTheme } from 'react-native-paper';
 import axios from 'axios'
 import { useToast } from 'react-native-toast-notifications';
 import { useRoute, useFocusEffect, StackActions } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux'
 import { API, HOST } from './../../configs';
 import { cartTotalSelector } from "./../../redux/selector";
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#659349',
+  },
+};
 
 const RestaurentsScreen = ({ navigation }) => {
 
@@ -162,6 +170,7 @@ const RestaurentsScreen = ({ navigation }) => {
             backgroundColor:'#e3e3e3',
             color: '#659349'
           }}
+          theme={theme}
           clearIcon={()=><Ionicons name="filter-outline" color="#000" size={20}/>}
           onChangeText={(text) => onChangeSearch(text)}
           value={searchQuery}
@@ -169,14 +178,15 @@ const RestaurentsScreen = ({ navigation }) => {
         <ScrollView 
           showsHorizontalScrollIndicator={false}
           horizontal={true}
+          contentContainerStyle={styles.chipScrollContainer}
         >
-          <View style={{ flexDirection: "row"}}>
-
+          <View style={styles.chipContainer}>
             <Chip 
-              mode='outlined' 
+              mode='outlined'
               avatar={<Avatar.Image size={24} source={require('./../../assets/resetfood.jpeg')} />}
               onPress={() => searchBySpeciality("all")} 
-              style={{height:40, marginRight:10}}
+              style={styles.chip}
+              textStyle={styles.chipText}
             >
               Tất cả
             </Chip>
@@ -185,7 +195,8 @@ const RestaurentsScreen = ({ navigation }) => {
               mode='outlined' 
               avatar={<Avatar.Image size={24} source={require('./../../assets/foods.jpg')} />}
               onPress={() => searchBySpeciality("Foods")} 
-              style={{height:40, marginRight:10}}
+              style={styles.chip}
+              textStyle={styles.chipText}
             >
               Thực phẩm ăn liền, chế biến sẵn
             </Chip>
@@ -194,7 +205,8 @@ const RestaurentsScreen = ({ navigation }) => {
               mode='outlined' 
               avatar={<Avatar.Image size={24} source={require('./../../assets/drinks.jpg')} />}
               onPress={() => searchBySpeciality("Drinks")} 
-              style={{height:40, marginRight:10}}
+              style={styles.chip}
+              textStyle={styles.chipText}
             >
               Đồ uống các loại
             </Chip>
@@ -203,7 +215,8 @@ const RestaurentsScreen = ({ navigation }) => {
               mode='outlined' 
               avatar={<Avatar.Image size={24} source={require('./../../assets/coffee.jpg')} />}
               onPress={() => searchBySpeciality("Coffee")} 
-              style={{height:40, marginRight:10}}
+              style={styles.chip}
+              textStyle={styles.chipText}
             >
               Cà phê uống liền
             </Chip>
@@ -212,7 +225,8 @@ const RestaurentsScreen = ({ navigation }) => {
               mode='outlined' 
               avatar={<Avatar.Image size={24} source={require('./../../assets/milk.jpg')} />}
               onPress={() => searchBySpeciality("Milk")} 
-              style={{height:40, marginRight:10}}
+              style={styles.chip}
+              textStyle={styles.chipText}
             >
               Sữa các loại, sữa chua
             </Chip>
@@ -221,7 +235,8 @@ const RestaurentsScreen = ({ navigation }) => {
               mode='outlined' 
               avatar={<Avatar.Image size={24} source={require('./../../assets/fruits.jpg')} />}
               onPress={() => searchBySpeciality("Fruits")} 
-              style={{height:40, marginRight:10}}
+              style={styles.chip}
+              textStyle={styles.chipText}
             >
               Trái cây các loại
             </Chip>
@@ -230,7 +245,8 @@ const RestaurentsScreen = ({ navigation }) => {
               mode='outlined' 
               avatar={<Avatar.Image size={24} source={require('./../../assets/grains.jpg')} />}
               onPress={() => searchBySpeciality("Grains")} 
-              style={{height:40, marginRight:10}}
+              style={styles.chip}
+              textStyle={styles.chipText}
             >
               Ngũ cốc, yến mạch
             </Chip>
@@ -240,13 +256,14 @@ const RestaurentsScreen = ({ navigation }) => {
               mode='outlined' 
               avatar={<Avatar.Image size={24} source={require('./../../assets/cakes.jpeg')} />}
               onPress={() => searchBySpeciality("Cakes")} 
-              style={{height:40, marginRight:10}}
+              style={styles.chip}
+              textStyle={styles.chipText}
             >
               Bánh truyền thống, bánh chưng, bánh tét,…
             </Chip>
           </View>
         </ScrollView>
-        <Text style={{fontSize:20, fontWeight:'bold'}}>
+        <Text style={styles.sectionTitle}>
           {orders.length ? '\nĐặt lại' : ''}
         </Text>
         {
@@ -331,7 +348,7 @@ const RestaurentsScreen = ({ navigation }) => {
             </TouchableOpacity>
           )})
         }
-        <Text style={{fontSize:20, fontWeight:'bold'}}>Quán ăn</Text>
+        <Text style={styles.sectionTitle}>Quán ăn</Text>
         {
           restaurants.map((restaurant, index) => (
             <TouchableOpacity 
@@ -442,6 +459,36 @@ const styles = StyleSheet.create({
     right: 2,
   },
 
+  chipScrollContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+  },
+  
+  chipContainer: {
+    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
+  chip: {
+    height: 40,
+    marginRight: 10,
+    borderColor: '#659349',
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
+  chipText: {
+    textAlign: 'center',
+  },
+
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#659349',
+  },
 })
 
 export default RestaurentsScreen
